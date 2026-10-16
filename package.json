@@ -1,0 +1,19 @@
+{
+  "name": "mestre-do-banco",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Jogo de técnico de futebol em tempo real para dois jogadores",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node tests/smoke.js && node tests/frontend.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
