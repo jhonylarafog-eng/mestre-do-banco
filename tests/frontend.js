@@ -21,8 +21,8 @@ const make=(phase,playerIndex=0)=>({
 });
 for(const phase of ['waiting','countdown','setup','match','paused','finished']){
  listeners.room_state(make(phase));assert.ok(screen.innerHTML.length>200,`renderizou tela ${phase}`);
- if(phase==='setup')assert.match(screen.innerHTML,/ESCOLHA SEU TIME/);
- if(phase==='match')assert.match(screen.innerHTML,/CAMPO EM TEMPO REAL/);
+ if(phase==='setup'){assert.match(screen.innerHTML,/ESCOLHA SEU TIME/);assert.match(screen.innerHTML,/ARRASTE PARA QUALQUER LUGAR/)}
+ if(phase==='match'){assert.match(screen.innerHTML,/CAMPO EM TEMPO REAL/);assert.match(screen.innerHTML,/FECHAR O TIME/);assert.match(screen.innerHTML,/SUBIR O TIME/);assert.match(screen.innerHTML,/SEGURAR O JOGO/);assert.match(screen.innerHTML,/LEITURA DA PARTIDA/);assert.doesNotMatch(screen.innerHTML,/id="match-real"/)}
  if(phase==='finished')assert.match(screen.innerHTML,/VITÓRIA/);
 }
 listeners.room_state(make('match',1));assert.match(screen.innerHTML,/CAMPO EM TEMPO REAL/);

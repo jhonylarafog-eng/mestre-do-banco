@@ -75,5 +75,5 @@ try {
  advance(15);advance(180);assert.equal(phase(c),'match');
  c.disconnect();assert.equal(phase(d),'finished');
  assert.ok(d.last('room_state').events.some(x=>x.text.includes('abandono')));
- console.log('PASSOU: 4 elencos, 20 escalações, sala privada, pareamento, 15s, 180s, táticas, entradas inválidas, substituição, pausa, 240s de jogo, eventos sincronizados e abandono.');
+ console.log('PASSOU: 4 elencos, 20 escalações, sala privada, pareamento, 15s, 180s, táticas, entradas inválidas, substituição, pausa, 220s de jogo, eventos sincronizados e abandono.');
 }finally {Date.now=origNow;global.setInterval=origInterval;server.httpServer.close()}
