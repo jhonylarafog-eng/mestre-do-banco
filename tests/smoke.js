@@ -39,9 +39,14 @@ try {
   }
  }
  const a=ioInstance.connect('alice'), b=ioInstance.connect('bob');
+ a.client('make_room');assert.match(a.last('notice').message,/nick/);
+ a.client('set_nick','  Maria Técnica  ');assert.equal(a.last('nick_saved').nick,'Maria Técnica');
+ b.client('set_nick','');assert.match(b.last('notice').message,/2 e 18/);
+ b.client('set_nick','João10');assert.equal(b.last('nick_saved').nick,'João10');
  a.client('make_room');const code=a.last('room_state')?.code;
  assert.equal(typeof code,'string');assert.equal(code.length,6);assert.equal(phase(a),'waiting');
  b.client('join_room',{code});assert.equal(phase(a),'countdown');assert.equal(phase(b),'countdown');
+ assert.equal(a.last('room_state').self.nick,'Maria Técnica');assert.equal(a.last('room_state').opponent.nick,'João10');assert.equal(b.last('room_state').self.nick,'João10');assert.equal(b.last('room_state').opponent.nick,'Maria Técnica');
  a.client('ready',true);assert.equal(a.last('room_state').self.ready,true);
  advance(15);assert.equal(phase(a),'setup');assert.equal(phase(b),'setup');
  a.client('team','rubro');assert.equal(a.last('room_state').self.team,'rubro');
@@ -70,10 +75,13 @@ try {
  assert.ok(a.last('room_state').events.length>1);
  a.client('restart');assert.equal(a.data.room,null);
  const c=ioInstance.connect('charlie'),d=ioInstance.connect('dora');
+ c.client('find_match');assert.match(c.last('notice').message,/nick/);
+ c.client('set_nick','Charlie');d.client('set_nick','Dora');
  c.client('find_match');assert.equal(c.last('searching').message.includes('Buscando'),true);
  d.client('find_match');assert.equal(phase(c),'countdown');assert.equal(phase(d),'countdown');
  advance(15);advance(180);assert.equal(phase(c),'match');
  c.disconnect();assert.equal(phase(d),'finished');
  assert.ok(d.last('room_state').events.some(x=>x.text.includes('abandono')));
+ assert.equal(d.last('room_state').opponent.nick,'Charlie');
  console.log('PASSOU: 4 elencos, 20 escalações, sala privada, pareamento, 15s, 180s, táticas, entradas inválidas, substituição, pausa, 220s de jogo, eventos sincronizados e abandono.');
 }finally {Date.now=origNow;global.setInterval=origInterval;server.httpServer.close()}

@@ -27,7 +27,7 @@ const D=require('../public/data.js');
 function advance(sec){for(let i=0;i<sec;i++){time+=1000;for(const it of intervals)if(it.ms===1000)it.fn()}}
 try{
  assert.equal(server.MATCH_SECONDS,220);
- let a=fakeIO.connect('first'),b=fakeIO.connect('second');a.client('make_room');b.client('join_room',{code:a.last().code});
+ let a=fakeIO.connect('first'),b=fakeIO.connect('second');a.client('set_nick','Pedro');b.client('set_nick','Luisa');a.client('make_room');b.client('join_room',{code:a.last().code});
  advance(15);
  assert.equal(a.last().phase,'setup');
  assert.ok(a.last().self.lineup.every(s=>Number.isFinite(s.x)&&Number.isFinite(s.y)));
