@@ -9,6 +9,9 @@
 .pitch-instruction{position:absolute;top:34%;left:50%;transform:translate(-50%,-50%);width:min(88%,420px);background:#071814b9;border:1px solid #daffd250;border-radius:10px;padding:9px 13px;color:#fff;font-weight:900;font-size:11px;line-height:1.55;text-align:center;letter-spacing:.03em;pointer-events:none;z-index:1}
 .pitch-instruction span{display:block;font-size:9px;color:var(--lime);margin-top:3px}
 .game-time-label{display:block;font-size:9px;letter-spacing:.12em;color:#94aeb1;margin-top:5px}
+.formation-top{grid-template-columns:1fr;margin:4px 0 8px}
+.formation-help{margin:0 0 14px;padding:12px 14px;border:1px solid #34525a;border-radius:12px;background:#0a1821;color:#dce7ea;font-size:11px;line-height:1.55;font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.03em}
+
 .tactical-commands,.match-analysis{margin-top:16px}
 .stance-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .stance-button{background:#0b1821;border:1px solid #364c56;border-radius:10px;color:#fff;text-align:left;padding:11px;min-height:75px}
@@ -26,4 +29,4 @@
 .analysis-row strong{text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:19px}
 .analysis-separator{text-align:center;color:#72818e;font-size:10px}
 .analysis-foot{margin:12px 0 0}
-@media(max-width:570px){.pitch-instruction{font-size:9px;width:85%;top:34%;padding:8px}.pitch-instruction span{font-size:8px}.stance-button{padding:9px}.stance-button strong{font-size:11px}.stance-button small{font-size:9px}}
+@media(max-width:570px){.stance-button{padding:9px}.stance-button strong{font-size:11px}.stance-button small{font-size:9px}}
